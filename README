@@ -1,0 +1,74 @@
+THE WANG ALGORITHM FOR THE PROPOSITIONAL CALCULUS
+Lisp 1.5 Programmers Manual
+John McCarthy 
+Paul W. Abrahams 
+Daniel J. Edwards 
+Timothy P. Hart 
+Michael I. Levin
+
+Wang, Hao. "Toward Mechanical Mathematics," IBM J. Res. Develop., Vol. 4, No. 1. January 1960.
+
+
+Running a computer program from 1960 in 2016. Try it out,
+
+```
+sbcl --non-interactive --eval '(declaim #+sbcl(sb-ext:muffle-conditions style-warning))' --load wang-cl.lisp
+```
+
+```
+This is SBCL 1.3.10, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+To load "linedit":
+  Load 1 ASDF system:
+    linedit
+; Loading "linedit"
+.....
+WANG ALGORITHM FOR THE PROPOSITIONAL CALCULUS
+
+NIL 
+NIL 
+(THEOREM TH1 TH2 TH THL THR TH1L TH1R TH2L TH2R TH11)   0: (THEOREM (ARROW (P) ((OR P Q))))
+    1: (TH1 NIL NIL (P) ((OR P Q)))
+      2: (TH1 (P) NIL NIL ((OR P Q)))
+        3: (TH2 (P) NIL NIL NIL ((OR P Q)))
+          4: (TH2 (P) NIL NIL ((OR P Q)) NIL)
+            5: (TH (P) NIL NIL ((OR P Q)))
+              6: (THR (OR P Q) (P) NIL NIL NIL)
+                7: (TH2R (P Q) (P) NIL NIL NIL)
+                7: TH2R returned (P)
+              6: THR returned (P)
+            5: TH returned (P)
+          4: TH2 returned (P)
+        3: TH2 returned (P)
+      2: TH1 returned (P)
+    1: TH1 returned (P)
+  0: THEOREM returned (P)
+
+(P) 
+T   0: (TH NIL ((OR A (NOT B))) NIL ((IMPLIES (AND P Q) (EQUIV P Q))))
+    1: (TH (A) NIL NIL ((IMPLIES (AND P Q) (EQUIV P Q))))
+      2: (TH (A) ((AND P Q)) NIL ((EQUIV P Q)))
+        3: (TH (Q P A) NIL NIL ((EQUIV P Q)))
+        3: TH returned (P A)
+      2: TH returned (P A)
+    1: TH returned (P A)
+    1: (TH NIL ((NOT B)) NIL ((IMPLIES (AND P Q) (EQUIV P Q))))
+      2: (TH NIL NIL (B) ((IMPLIES (AND P Q) (EQUIV P Q))))
+        3: (TH NIL ((AND P Q)) (B) ((EQUIV P Q)))
+          4: (TH (Q P) NIL (B) ((EQUIV P Q)))
+          4: TH returned (P)
+        3: TH returned (P)
+      2: TH returned (P)
+    1: TH returned (P)
+  0: TH returned (P)
+
+(P) 
+
+```
+
+
